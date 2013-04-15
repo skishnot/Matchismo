@@ -20,7 +20,10 @@
 
 - (Card *)cardAtIndex:(NSUInteger)index;
 
+- (void)reset;
+
 @property (readonly, nonatomic) int score;
 @property (readonly, nonatomic) NSString *flipResult;
+@property (nonatomic, getter = isMatch3mode) BOOL match3mode;
 
 @end

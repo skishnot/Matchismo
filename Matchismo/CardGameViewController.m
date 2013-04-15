@@ -53,7 +53,7 @@
 {
     _flipcount = flipcount;
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipcount];
-    NSLog(@"flips updated to %d", self.flipcount);
+    NSLog(@"flip count updated to %d", self.flipcount);
 }
 
 - (IBAction)flipCard:(UIButton *)sender
@@ -61,6 +61,24 @@
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipcount++;
     [self updateUI];
+}
+
+- (IBAction)reDeal:(UIButton *)sender {
+    _game = [[CardGame alloc] initWithCardCount:[self.cardButtons count]
+                                      usingDeck:[[PlayingCardDeck alloc] init]];
+    
+    [self.game reset];
+    self.flipcount = 0;
+    
+    [self updateUI];
+}
+
+- (IBAction)changeGameMode:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 0) {
+        [self.game selectMatch2];
+    } else {
+        [self.game selectMatch3];
+    }
 }
 
 @end

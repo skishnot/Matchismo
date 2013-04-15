@@ -20,7 +20,10 @@
         } else if (otherCard.rank == self.rank) {
             score = 4;
         }
+    } else if ([otherCards count] == 2){
+        
     }
+    
     return score;
 }
 
@@ -31,14 +34,17 @@
 }
 
 @synthesize suit = _suit; // because we have our own getter & setter
+
 + (NSArray *)validSuits {
     return @[@"♥", @"♦", @"♠", @"♣"];
 }
+
 - (void)setSuit:(NSString *)suit {
     if ([[PlayingCard validSuits] containsObject:suit]) {
         _suit = suit;
     }
 } //setter for suit
+
 - (NSString *)suit {
     return _suit ? _suit : @"?";
 } // getter for suit
