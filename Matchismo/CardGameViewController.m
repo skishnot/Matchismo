@@ -17,6 +17,8 @@
 @property (strong, nonatomic) CardGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *flipResultLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gameLogicController;
+
 @end
 
 @implementation CardGameViewController
@@ -47,6 +49,7 @@
     }
     self.flipResultLabel.text = [self.game flipResult];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    [self updateGameLogicSetting];
 }
 
 - (void)setFlipcount:(int)flipcount
@@ -63,22 +66,29 @@
     [self updateUI];
 }
 
-- (IBAction)reDeal:(UIButton *)sender {
-    _game = [[CardGame alloc] initWithCardCount:[self.cardButtons count]
-                                      usingDeck:[[PlayingCardDeck alloc] init]];
-    
+- (IBAction)performRedeal {
+    [self reDeal];
+}
+
+- (void)reDeal {
+    self.game = nil;
     [self.game reset];
     self.flipcount = 0;
-    
     [self updateUI];
 }
 
-- (IBAction)changeGameMode:(UISegmentedControl *)sender {
-    if (sender.selectedSegmentIndex == 0) {
-        [self.game selectMatch2];
+-(void)updateGameLogicSetting
+{
+    if (self.gameLogicController.selectedSegmentIndex == 0) {
+        self.game.match3mode = NO;
     } else {
-        [self.game selectMatch3];
+        self.game.match3mode = YES;
     }
+}
+
+- (IBAction)changeGameLogicSetting:(UISegmentedControl *)sender {
+    [self updateGameLogicSetting];
+    [self reDeal];
 }
 
 @end

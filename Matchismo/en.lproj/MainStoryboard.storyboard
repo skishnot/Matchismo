@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3103" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -301,7 +301,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="reDeal:" destination="2" eventType="touchUpInside" id="vS2-N8-W5V"/>
+                                    <action selector="performRedeal" destination="2" eventType="touchUpInside" id="3DR-th-Gqc"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="fVu-UH-Vsr">
@@ -312,7 +312,7 @@
                                     <segment title="Match 3"/>
                                 </segments>
                                 <connections>
-                                    <action selector="changeGameMode:" destination="2" eventType="valueChanged" id="VWm-2P-NKI"/>
+                                    <action selector="changeGameLogicSetting:" destination="2" eventType="valueChanged" id="z89-vI-0Zc"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
@@ -321,6 +321,7 @@
                     <connections>
                         <outlet property="flipResultLabel" destination="Wo2-QI-Vpl" id="gsC-1u-5CW"/>
                         <outlet property="flipsLabel" destination="DW3-9G-StB" id="4vV-hL-S67"/>
+                        <outlet property="gameLogicController" destination="fVu-UH-Vsr" id="Mcx-7S-B5e"/>
                         <outlet property="scoreLabel" destination="bxM-IF-F5Y" id="OMD-I8-EGD"/>
                         <outletCollection property="cardButtons" destination="DDj-9u-IVK" id="nv8-c7-ook"/>
                         <outletCollection property="cardButtons" destination="vjL-bA-qMQ" id="vIb-2n-m4n"/>
@@ -348,10 +349,11 @@
         <class className="CardGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
             <relationships>
+                <relationship kind="action" name="changeGameLogicSetting:" candidateClass="UISegmentedControl"/>
                 <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
-                <relationship kind="action" name="reDeal:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="flipResultLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="flipsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="gameLogicController" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>
             </relationships>

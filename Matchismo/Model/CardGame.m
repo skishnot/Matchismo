@@ -30,8 +30,10 @@
 {
     if (!self.isMatch3mode) {
         [self match2logic:index];
+        NSLog(@"match 2 logic in place");
     } else {
         [self match3logic:index];
+        NSLog(@"match 3 logic in place");
     }
 }
 
@@ -54,9 +56,8 @@
             
             // then look through other cards
             for (Card *otherCard in self.cards) {
-                
                 // and for each Other Card that is face up and playable
-                if (otherCard.isFaceUp && !otherCard.isUnplayable) {
+                if (otherCard.isFaceUp && !otherCard.isUnplayable && (otherCard != card)) {
                     
                     // see if it is a match
                     int matchScore = [card match:@[otherCard]];
@@ -102,14 +103,14 @@
         
         // then find another flipped card, and report if there is one
         for (Card *card2 in self.cards) {
-            if (!card2.isUnplayable && card2.isFaceUp) {
+            if (!card2.isUnplayable && card2.isFaceUp && (card1 != card2)) {
                 self.flipResult = [NSString stringWithFormat:@"Flipped %@ and %@", card1.contents, card2.contents];
                 
                 // then look for the third card
                 for (Card *card3 in self.cards) {
                     
                     //if there is the third card, check for its match score
-                    if (!card3.isUnplayable && card3.isFaceUp) {
+                    if (!card3.isUnplayable && card3.isFaceUp && (card3 != card1) && (card3 != card2)) {
                         int matchScore = [card1 match:@[card2, card3]];
                         
                         // if there is a match score, all cards are now unplayable
