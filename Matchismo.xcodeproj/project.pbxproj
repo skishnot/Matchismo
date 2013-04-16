@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB154E60171D672600CD051C /* CardBack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB154E5F171D672600CD051C /* CardBack.jpg */; };
+		CB154E62171DABD100CD051C /* YugiohCardBack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB154E61171DABD100CD051C /* YugiohCardBack.jpg */; };
+		CB154E65171DAD2B00CD051C /* RedCardBack.png in Resources */ = {isa = PBXBuildFile; fileRef = CB154E63171DAD2B00CD051C /* RedCardBack.png */; };
+		CB154E66171DAD2B00CD051C /* BlueCardBack.png in Resources */ = {isa = PBXBuildFile; fileRef = CB154E64171DAD2B00CD051C /* BlueCardBack.png */; };
 		CB4A769D16DE90C40084E0DD /* CardGame.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A769C16DE90C40084E0DD /* CardGame.m */; };
 		CB844DE216D7FCB40041694A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB844DE116D7FCB40041694A /* UIKit.framework */; };
 		CB844DE416D7FCB40041694A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB844DE316D7FCB40041694A /* Foundation.framework */; };
@@ -27,7 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CB154E5F171D672600CD051C /* CardBack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CardBack.jpg; sourceTree = "<group>"; };
+		CB154E61171DABD100CD051C /* YugiohCardBack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = YugiohCardBack.jpg; sourceTree = "<group>"; };
+		CB154E63171DAD2B00CD051C /* RedCardBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedCardBack.png; sourceTree = "<group>"; };
+		CB154E64171DAD2B00CD051C /* BlueCardBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueCardBack.png; sourceTree = "<group>"; };
 		CB4A769B16DE90C40084E0DD /* CardGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardGame.h; path = Matchismo/Model/CardGame.h; sourceTree = "<group>"; };
 		CB4A769C16DE90C40084E0DD /* CardGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardGame.m; path = Matchismo/Model/CardGame.m; sourceTree = "<group>"; };
 		CB844DDE16D7FCB40041694A /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +74,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB154E67171DAD3000CD051C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CB154E61171DABD100CD051C /* YugiohCardBack.jpg */,
+				CB154E63171DAD2B00CD051C /* RedCardBack.png */,
+				CB154E64171DAD2B00CD051C /* BlueCardBack.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		CB844DD516D7FCB40041694A = {
 			isa = PBXGroup;
 			children = (
@@ -106,7 +120,7 @@
 				CB844DF916D7FCB40041694A /* MainStoryboard.storyboard */,
 				CB844DFC16D7FCB40041694A /* CardGameViewController.h */,
 				CB844DFD16D7FCB40041694A /* CardGameViewController.m */,
-				CB154E5F171D672600CD051C /* CardBack.jpg */,
+				CB154E67171DAD3000CD051C /* Resources */,
 				CB844DE816D7FCB40041694A /* Supporting Files */,
 			);
 			path = Matchismo;
@@ -201,7 +215,9 @@
 				CB844DF616D7FCB40041694A /* Default@2x.png in Resources */,
 				CB844DF816D7FCB40041694A /* Default-568h@2x.png in Resources */,
 				CB844DFB16D7FCB40041694A /* MainStoryboard.storyboard in Resources */,
-				CB154E60171D672600CD051C /* CardBack.jpg in Resources */,
+				CB154E62171DABD100CD051C /* YugiohCardBack.jpg in Resources */,
+				CB154E65171DAD2B00CD051C /* RedCardBack.png in Resources */,
+				CB154E66171DAD2B00CD051C /* BlueCardBack.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

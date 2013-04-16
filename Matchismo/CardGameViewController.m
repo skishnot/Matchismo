@@ -42,8 +42,9 @@
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         if (!card.isFaceUp) {
-            UIImage *cardBackImage = [UIImage imageNamed:@"CardBack.jpg"];
+            UIImage *cardBackImage = [UIImage imageNamed:@"BlueCardBack.png"];
             [cardButton setImage:cardBackImage forState:UIControlStateNormal];
+            cardButton.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         } else {
             [cardButton setImage:nil forState:UIControlStateNormal];
         }
