@@ -301,7 +301,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="performRedeal" destination="2" eventType="touchUpInside" id="3DR-th-Gqc"/>
+                                    <action selector="redeal" destination="2" eventType="touchUpInside" id="dTJ-Za-ibP"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="fVu-UH-Vsr">

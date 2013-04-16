@@ -67,15 +67,11 @@
     [self updateUI];
 }
 
-- (IBAction)performRedeal {
-    self.gameLogicController.enabled = YES;
-    [self reDeal];
-}
-
-- (void)reDeal {
+- (IBAction)redeal {
     self.game = nil;
     [self.game reset];
     self.flipcount = 0;
+    self.gameLogicController.enabled = YES;
     [self updateUI];
 }
 
@@ -90,7 +86,6 @@
 
 - (IBAction)changeGameLogicSetting:(UISegmentedControl *)sender {
     [self updateGameLogicSetting];
-    [self reDeal];
 }
 
 @end
