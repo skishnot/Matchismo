@@ -63,10 +63,12 @@
 {
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipcount++;
+    self.gameLogicController.enabled = NO;
     [self updateUI];
 }
 
 - (IBAction)performRedeal {
+    self.gameLogicController.enabled = YES;
     [self reDeal];
 }
 
