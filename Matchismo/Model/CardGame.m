@@ -88,7 +88,7 @@
     }
 }
 
-- (void)match3logic:(NSUInteger)index
+-(void)match3logic:(NSUInteger)index
 {
     // define card #1, then check if it's playable and face down
     Card *card1 = [self cardAtIndex:index];
@@ -100,108 +100,40 @@
         NSLog(@"Flipped %@", card1.contents);
         self.flipResult = [NSString stringWithFormat:@"Flipped %@", card1.contents];
         
-        // then look for card2
-        Card *card2 = [self findCard2Using:card1];
-        if (card2) {
-            NSLog(@"Flipped %@ and %@", card1.contents, card2.contents);
-            self.flipResult = [NSString stringWithFormat:@"Flipped %@ and %@", card1.contents, card2.contents];
-        }
-
-        // then look for card3
-        Card *card3 = [self findCard3Using:card1 and:card2];
-        if (card3) {
-            NSLog(@"Flipped %@, %@, and %@", card1.contents, card2.contents, card3.contents);
-        }
-        
-        // then calculate the match score depending on the quality of the match
-        int matchScore = [self findMatchScoreUsing:card1 :card2 and:card3];
-        
-        // then reset the card values for the next round
-        
-            for (Card *card2 in self.cards) {
+        // then find another flipped card, and report if there is one
+        for (Card *card2 in self.cards) {
+            if (!card2.isUnplayable && card2.isFaceUp) {
+                self.flipResult = [NSString stringWithFormat:@"Flipped %@ and %@", card1.contents, card2.contents];
                 
-                // if there is a card (that we call "card2") that is face up and playable
-                if (card2.isFaceUp && !card2.isUnplayable) {
+                // then look for the third card
+                for (Card *card3 in self.cards) {
                     
-                    // report first
-                    NSLog(@"Flipped %@ and %@", card1.contents, card2.contents);
-                    self.flipResult = [NSString stringWithFormat:@"Flipped %@ and %@", card1.contents, card2.contents];
-                    
-                    //then look through other cards for card3
-                    
-                    // then see if it is a match
-                    int matchScore = [card match:@[otherCard]];
-                    if (matchScore) {
+                    //if there is the third card, check for its match score
+                    if (!card3.isUnplayable && card3.isFaceUp) {
+                        int matchScore = [card1 match:@[card2, card3]];
                         
-                        // if yes, both cards are now unplayable
-                        card.unplayable = YES;
-                        otherCard.unplayable = YES;
-                        
-                        // calculate the score, then report
-                        self.score += matchScore * MATCH_BONUS;
-                        NSLog(@"Matched. %@ & %@ for %d points.", card.contents, otherCard.contents, matchScore * MATCH_BONUS);
-                        self.flipResult = [NSString stringWithFormat:@"%@ & %@ are a match! Gained %d points.", card.contents, otherCard.contents, matchScore * MATCH_BONUS];
-                        
-                    } else {
-                        
-                        // if no, flip down the Other Crad, penalty is applied, then report
-                        otherCard.faceUp = NO;
-                        self.score -= MISMATCH_PENALTY;
-                        NSLog(@"Not a match. %@ & %@ for -%d points.", card.contents, otherCard.contents, MISMATCH_PENALTY);
-                        self.flipResult = [NSString stringWithFormat:@"%@ & %@ are not a match. Lost %d points.", card.contents, otherCard.contents, MISMATCH_PENALTY];
+                        // if there is a match score, all cards are now unplayable
+                        if (matchScore) {
+                            card1.unplayable = YES;
+                            card2.unplayable = YES;
+                            card3.unplayable = YES;
+                            self.score += matchScore * MATCH_BONUS;
+                            self.flipResult = [NSString stringWithFormat:@"A match found among %@, %@, and %@! Gained %d points!", card1.contents, card2.contents, card3.contents, matchScore * MATCH_BONUS];
+                        } else {
+                            // if no score, all cards are turned face down, and a penalty is applied
+                            card1.faceUp = NO;
+                            card2.faceUp = NO;
+                            card3.faceUp = NO;
+                            self.score -= MISMATCH_PENALTY;
+                            self.flipResult = [NSString stringWithFormat:@"No match found in %@, %@, and %@. Lost %d points :(", card1.contents, card2.contents, card3.contents, MISMATCH_PENALTY];
+                        }
+                        // break for-loop if the third card is found.
+                        break;
                     }
-                    
-                    // for loop is broken if a card was found
-                    break;
                 }
             }
         }
     }
-}
-
-- (Card *)findCard2Using:(Card *)card1
-{
-    Card *card2 = nil;
-    
-    // go through the cards for potential card2 candidate
-    for (int i = 0; i < [self.cards count]; i++) {
-        Card *potentialCard2 = self.cards[i];
-        
-        // it has to be face up, playable, and not card1
-        if (potentialCard2.isFaceUp && !potentialCard2.isUnplayable && !card1) {
-            
-            // if found, assign it to card2, then break
-            card2 = self.cards[i];
-            break;
-        }
-    }
-    
-    return card2;
-}
-
-- (Card *)findCard3Using:(Card *)card1 and:(Card *)card2
-{
-    Card *card3 = nil;
-    
-    // go through the cards for potential card2 candidate
-    for (int i = 0; i < [self.cards count]; i++) {
-        Card *potentialCard3 = self.cards[i];
-        
-        // it has to be face up, playable, and not card1
-        if (potentialCard3.isFaceUp && !potentialCard3.isUnplayable && !card1 && !card2) {
-            
-            // if found, assign it to card2, then break
-            card3 = self.cards[i];
-            break;
-        }
-    }
-    
-    return card3;
-}
-
-- (int)findMatchScoreUsing:(Card *)card1 :(Card *)card2 and:(Card *)card3
-{
-    
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index
