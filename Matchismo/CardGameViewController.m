@@ -41,6 +41,12 @@
     // make sure the UI matches the model. Also possibly send info to model
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        if (!card.isFaceUp) {
+            UIImage *cardBackImage = [UIImage imageNamed:@"CardBack.jpg"];
+            [cardButton setImage:cardBackImage forState:UIControlStateNormal];
+        } else {
+            [cardButton setImage:nil forState:UIControlStateNormal];
+        }
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
         [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
         cardButton.selected = card.isFaceUp;
