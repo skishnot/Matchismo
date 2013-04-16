@@ -44,7 +44,7 @@
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
         [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
         cardButton.selected = card.isFaceUp;
-        cardButton.enabled = !card.isUnplayable;
+        cardButton.enabled = card.isFaceUp ? NO : YES;
         cardButton.alpha = (card.isUnplayable ? 0.3 : 1.0);
     }
     self.flipResultLabel.text = [self.game flipResult];
