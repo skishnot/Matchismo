@@ -12,6 +12,7 @@
 @property (readwrite, nonatomic) int score;
 @property (strong, nonatomic) NSMutableArray *cards; // of Card
 @property (readwrite, nonatomic) NSString *flipResult;
+@property (readwrite, nonatomic) NSArray *flipHistory;
 @end
 
 @implementation CardGame
@@ -35,6 +36,18 @@
         [self match3logic:index];
         NSLog(@"match 3 logic in place");
     }
+}
+
+-(NSArray *)flipHistory
+{
+    if (!_flipHistory) _flipHistory = [[NSArray alloc] init];
+    return _flipHistory;
+}
+
+-(void)setFlipResult:(NSString *)flipResult
+{
+    _flipResult = flipResult;
+    self.flipHistory = [self.flipHistory arrayByAddingObject:_flipResult];
 }
 
 - (void)match2logic:(NSUInteger)index

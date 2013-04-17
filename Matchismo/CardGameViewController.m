@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *flipResultLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameLogicController;
+@property (weak, nonatomic) IBOutlet UISlider *labelSlider;
 
 @end
 
@@ -57,6 +58,10 @@
     self.flipResultLabel.text = [self.game flipResult];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     [self updateGameLogicSetting];
+    
+    // Label Slider
+    self.labelSlider.maximumValue = [self.game.flipHistory count];
+    [self.labelSlider setValue:[self.game.flipHistory count]];
 }
 
 - (void)setFlipcount:(int)flipcount

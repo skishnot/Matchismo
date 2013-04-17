@@ -24,6 +24,7 @@
 
 @property (readonly, nonatomic) int score;
 @property (readonly, nonatomic) NSString *flipResult;
+@property (readonly, nonatomic) NSArray *flipHistory;
 @property (nonatomic, getter = isMatch3mode) BOOL match3mode;
 
 @end
