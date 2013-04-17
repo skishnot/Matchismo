@@ -55,13 +55,17 @@
         cardButton.enabled = card.isFaceUp ? NO : YES;
         cardButton.alpha = (card.isUnplayable ? 0.3 : 1.0);
     }
+    
+    // Display flip result
+    self.flipResultLabel.alpha = 1.0;
     self.flipResultLabel.text = [self.game flipResult];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    [self updateGameLogicSetting];
     
     // Label Slider
     self.labelSlider.maximumValue = [self.game.flipHistory count]-1;
     [self.labelSlider setValue:self.labelSlider.maximumValue];
+    
+    [self updateGameLogicSetting];
 }
 
 - (void)setFlipcount:(int)flipcount
@@ -89,6 +93,7 @@
 
 - (IBAction)viewHistory:(UISlider *)sender {
     self.flipResultLabel.text = [self.game.flipHistory objectAtIndex:(int)sender.value];
+    self.flipResultLabel.alpha = 0.3;
 }
 
 -(void)updateGameLogicSetting
