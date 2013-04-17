@@ -60,8 +60,8 @@
     [self updateGameLogicSetting];
     
     // Label Slider
-    self.labelSlider.maximumValue = [self.game.flipHistory count];
-    [self.labelSlider setValue:[self.game.flipHistory count]];
+    self.labelSlider.maximumValue = [self.game.flipHistory count]-1;
+    [self.labelSlider setValue:self.labelSlider.maximumValue];
 }
 
 - (void)setFlipcount:(int)flipcount
@@ -85,6 +85,10 @@
     self.flipcount = 0;
     self.gameLogicController.enabled = YES;
     [self updateUI];
+}
+
+- (IBAction)viewHistory:(UISlider *)sender {
+    self.flipResultLabel.text = [self.game.flipHistory objectAtIndex:(int)sender.value];
 }
 
 -(void)updateGameLogicSetting
